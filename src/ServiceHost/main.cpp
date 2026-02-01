@@ -2,6 +2,7 @@
 #include "ServiceBootstrap.h"
 #include "../InferenceRuntime/Runtime.h"
 #include "../SemanticSearch/SearchEngine.h"
+#include "../AgentOrchestrator/Orchestrator.h"
 
 int main(){
     std::cout<<"AI Platform starting..."<<std::endl;
@@ -15,15 +16,19 @@ int main(){
     std::cout<<"Service initialized successfully."<<std::endl;
 
     Runtime runtime;
-    int result = runtime.run("hello ai platform");
-
     SearchEngine search;
+    Orchestrator agent;
+
+
+    int runtimeResult = runtime.run("hello windows ai runtime");
     int searchResult = search.search("semantic search query");
+    int agentResult = agent.executeTask("summarize search results");
 
-
-    std::cout<<"Runtime result:"<< result<<std::endl;
+    std::cout << "Runtime result: " << runtimeResult << std::endl;
     std::cout << "Search result: " << searchResult << std::endl;
-    std::cout<<"Service is now running..."<<std::endl;
+    std::cout << "Agent result: " << agentResult << std::endl;
+
+    std::cout << "Service is now running..." << std::endl;
 
 
     while(true){
