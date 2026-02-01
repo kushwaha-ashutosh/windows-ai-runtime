@@ -4,9 +4,21 @@
 #include "../SemanticSearch/SearchEngine.h"
 #include "../AgentOrchestrator/Orchestrator.h"
 #include "../Telemetry/Telemetry.h"
+#include <string>
 
-int main(){
 
+int main(int argc, char* argv[]) {
+    // -------- CLI MODE (used by API Gateway) --------
+    if (argc >= 3 && std::string(argv[1]) == "--search") {
+        std::string query = argv[2];
+
+        SearchEngine search;
+        int result = search.search(query);
+
+        std::cout << result;   // IMPORTANT: stdout only
+        return 0;
+    }
+    // -------- SERVICE MODE (normal startup) --------
     Telemetry::log("AI Runtime starting...");
 
     ServiceBootstrap bootstrap;
