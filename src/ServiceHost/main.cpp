@@ -4,6 +4,8 @@
 #include "../SemanticSearch/SearchEngine.h"
 #include "../AgentOrchestrator/Orchestrator.h"
 #include "../Telemetry/Telemetry.h"
+#include "../AgentOrchestrator/Orchestrator.h"
+
 #include <string>
 
 
@@ -18,6 +20,22 @@ int main(int argc, char* argv[]) {
         std::cout << result;   // IMPORTANT: stdout only
         return 0;
     }
+
+    if (argc >= 3 && std::string(argv[1]) == "--agent") {
+    std::string task = argv[2];
+
+    Orchestrator agent;
+    int result = agent.executeTask(task);
+
+    std::cout << result; // stdout only
+    return 0;
+}
+
+
+    
+
+
+
     // -------- SERVICE MODE (normal startup) --------
     Telemetry::log("AI Runtime starting...");
 
